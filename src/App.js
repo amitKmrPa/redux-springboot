@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from "react";
 import './App.css';
-
+import HomeComponent from './Home/HomeComponent';
+import GetAllProductActions from "./Actions/GetAllProductActions";
+import { useSelector, useDispatch } from "react-redux";
+import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
+import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
+import UserLogin from './Login/UserLogin';
+import BuyProductsComponent from "./User/BuyProductsComponent";
+import CartComponent from "./User/CartComponent";
 function App() {
+  const state = useSelector((state) => state);
+  const getAllProducts = useDispatch();
+    useEffect(() => {
+      getAllProducts(GetAllProductActions());
+    }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router >
+      <Routes>
+      <Route path={'/'} element={<HomeComponent />} />
+      <Route path={'/userLogin'} element={<UserLogin />} />
+      <Route path={'/buyproducts'} element={<BuyProductsComponent />} />
+      <Route path={'/addToCart'} element={<CartComponent />} />
+      </Routes>
+    </Router>
+   
   );
 }
 
