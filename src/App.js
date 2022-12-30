@@ -9,6 +9,7 @@ import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 import UserLogin from './Login/UserLogin';
 import BuyProductsComponent from "./User/BuyProductsComponent";
 import CartComponent from "./User/CartComponent";
+import NavBar from "./NavBar/NavBar";
 function App() {
   const state = useSelector((state) => state);
   const getAllProducts = useDispatch();
@@ -17,7 +18,7 @@ function App() {
     }, [])
 
   return (
-    <Router >
+    <Router>
       <Routes>
       <Route path={'/'} element={<HomeComponent />} />
       <Route path={'/userLogin'} element={<UserLogin />} />

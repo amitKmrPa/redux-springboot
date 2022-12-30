@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSelector, useDispatch } from "react-redux";
 import userLogin from '../Actions/UserLogin';
 import { useNavigate} from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 
 const theme = createTheme();
@@ -40,6 +41,7 @@ function UserLogin(props) {
     }
     return (
         <ThemeProvider theme={theme}>
+                  <NavBar />
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box

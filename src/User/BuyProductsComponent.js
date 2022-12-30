@@ -28,7 +28,7 @@ function BuyProductsComponent(props) {
             alignItems: "center",
             justifyContent: 'center',
         }}>
-               <SlideShow />
+               {/* <SlideShow /> */}
 
  <Grid sx={{ flexGrow: 1 }} container spacing={2}  >
             <Grid item xs={12}>

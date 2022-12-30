@@ -32,6 +32,9 @@ function SlideShow(props) {
   if (state.allProduct.products.data !== undefined) {
     CollectionSize = state.allProduct.products.data.length;
   }
+  useEffect(()=>{
+    console.log(inc);
+  },[index])
   if (inc !== 3) {
     var inverval_timer = setInterval( ()=> {
       setActiveStep(inc);
@@ -43,10 +46,6 @@ function SlideShow(props) {
   } else {
     inc = 0;
   }
-
-  // const goToNextPicture = () => {
-  //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  // };
   return (
     <div
       style={{

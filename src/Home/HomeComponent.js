@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import BuyProducts from '../Actions/BuyProducts'
 import SlideShow from "./SlideShow";
 import AddToCart from '../Actions/AddToCart'
+import NavBar from "../NavBar/NavBar";
 function HomeComponent(props) {
     const state = useSelector((state) => state);
     const navigate = useNavigate();
@@ -20,11 +21,9 @@ function HomeComponent(props) {
     const [userId, setUserId] = useState("");
     const [userName, setUserName] = useState("");
 
-    // console.log(JSON.stringify(state.allProduct.products.data));
     const buyProductFn = (productId, sellerId) => {
         if (userId) {
             buyProducts(BuyProducts(userId, productId, sellerId));
-            // console.log(JSON.stringify(state.allProduct.products.data));
             navigate('/buyproducts');
         } else {
             alert("Please Login First!");
@@ -33,7 +32,6 @@ function HomeComponent(props) {
     const addToCartFn = (productId, sellerId) => {
         if (userId) {
             addToCart(AddToCart(productId, userId, sellerId));
-            // console.log(JSON.stringify(state.CartData.addCart));
             navigate('/addToCart');
         } else {
             alert("Please Login First!");
@@ -45,17 +43,9 @@ function HomeComponent(props) {
         setUserId(uId);
         setUserName(uName);
     }, []);
-    const Login = () => {
-        navigate('/userLogin');
-    }
-    const logout = () => {
-        localStorage.removeItem('userId');
-        localStorage.removeItem('userName');
-        setUserId("");
-        navigate('/');
-        window.location.reload(false);
-    }
-    return (
+
+    return (<div>
+        <NavBar />
         <div
             className="e-card e-card-horizontal"
             style={{
@@ -63,30 +53,22 @@ function HomeComponent(props) {
                 flexDirection: 'column',
                 alignItems: "center",
                 justifyContent: 'center',
-                backgroundColor: 'red',
-                height: '700px',
+                backgroundColor: '#e0f0c9',
+                height: '500px',
             }}>
-            {
-                !userId &&
-                <Button
-                
-                    variant="contained"
-                    color="primary"
-                    className="nav-link"
-                    onClick={Login}
-                >User Login</Button>
-            }
-            {
-                userId &&
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    className="nav-link"
-                    onClick={logout}>
-                    Logout
-                </Button>
-            }
-            <SlideShow />
+            <div style={{
+                marginBottom: ' 0px'
+            }} >
+                <h2>WELCOME TO MY E-COMMERCE SITE</h2>
+            </div>
+            <div style={{
+                color: 'cadetblue', display: 'flex',
+                flexDirection: 'column',
+                alignItems: "end",
+                justifyContent: 'center', width: '100%'
+            }}>
+            </div>
+            {/* <SlideShow /> */}
 
             <Grid sx={{ flexGrow: 1 }} container spacing={2}  >
                 <Grid item xs={12}>
@@ -134,6 +116,7 @@ function HomeComponent(props) {
                     </Grid>
                 </Grid>
             </Grid>
+        </div>
         </div>
     );
 }

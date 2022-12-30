@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 import SlideShow from "../Home/SlideShow";
 import RemoveFromCart from "../Actions/RemoveFromCart";
+import NavBar from "../NavBar/NavBar";
 
 function CartComponent(props) {
     const state = useSelector((state) => state);
@@ -19,10 +20,8 @@ function CartComponent(props) {
     const [userId, setUserId] = useState("");
     const [userName, setUserName] = useState("");
     const [cartViewToggle, setCartViewToggle] = useState(1);
-    if (state.CartData.addCart.length !== 0) {
-        // console.log(JSON.stringify(state.CartData.addCart));
-    }
     const payFn = (productId, sellerId) => {
+        alert(cartViewToggle);
     }
     useEffect(() => {
         const uId = JSON.parse(localStorage.getItem('userId'));
@@ -32,10 +31,11 @@ function CartComponent(props) {
     }, []);
 
     const removeFn = (productId, sellerId) => {
-        removeFromCart(RemoveFromCart(productId, sellerId,userId));
+        removeFromCart(RemoveFromCart(productId, sellerId, userId));
         setCartViewToggle(2);
     }
-    return (
+    return (<div>
+        <NavBar />
         <div
             className="e-card e-card-horizontal"
             style={{
@@ -44,11 +44,12 @@ function CartComponent(props) {
                 alignItems: "center",
                 justifyContent: 'center',
             }}>
-            <SlideShow />
+            {/* <SlideShow /> */}
+            <h2>Your Kart</h2>
             <Grid sx={{ flexGrow: 1 }} container spacing={2}  >
                 <Grid item xs={12}>
                     <Grid container justifyContent="center" spacing={2}>
-                       {
+                        {
                             state.CartData.addCart && cartViewToggle === 1 &&
                             state.CartData.addCart.map(
                                 (element) => (
@@ -63,7 +64,7 @@ function CartComponent(props) {
                                                     alt="green iguana"
                                                     image={require('../Product/images/' + element[6])}
                                                 />
-                                                
+
                                                 <CardContent sx={{ minWidth: 145 }}>
                                                     <Typography gutterBottom variant="h5" component="div">
                                                         {element[1]}
@@ -86,15 +87,15 @@ function CartComponent(props) {
                                                 <Button size="small" color="primary" value={element[3]} onClick={() => removeFn(element[3], element[5])} >
                                                     Remove
                                                 </Button>
-                                                
+
                                             </CardActions>
                                         </Card>
                                     </Grid>
                                 )
-                            )
+                            ) 
                         }
 
-{
+                        {
                             state.RemoveFromCartResult.removeData && cartViewToggle === 2 &&
                             state.RemoveFromCartResult.removeData.map(
                                 (element) => (
@@ -109,7 +110,7 @@ function CartComponent(props) {
                                                     alt="green iguana"
                                                     image={require('../Product/images/' + element[6])}
                                                 />
-                                                
+
                                                 <CardContent sx={{ minWidth: 145 }}>
                                                     <Typography gutterBottom variant="h5" component="div">
                                                         {element[1]}
@@ -132,16 +133,17 @@ function CartComponent(props) {
                                                 <Button size="small" color="primary" value={element[3]} onClick={() => removeFn(element[3], element[5])} >
                                                     Remove
                                                 </Button>
-                                                
                                             </CardActions>
                                         </Card>
                                     </Grid>
                                 )
-                            )
+                            ) 
                         }
                     </Grid>
                 </Grid>
             </Grid>
+
+        </div>
         </div>
     );
 }
