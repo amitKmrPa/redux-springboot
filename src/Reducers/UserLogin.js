@@ -1,7 +1,8 @@
-import { USER_LOGIN } from "../Actions/ActionType";
+import { SIGN_UP, USER_LOGIN } from "../Actions/ActionType";
 
 const initialState = {
   login: [],
+  signUp:[],
 };
 
  const UserLogin = (state = initialState, action) => {
@@ -12,6 +13,11 @@ const initialState = {
         ...state,
         login: action.payload,
       };
+      case SIGN_UP:
+        return {
+          ...state,
+          signUp: action.payload,
+        };
     default:
       return state;
   }

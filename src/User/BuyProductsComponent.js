@@ -14,7 +14,7 @@ function BuyProductsComponent(props) {
     const state = useSelector((state) => state);
     if(state.BuyProductsData.buyProduct.length !==0){
         
-        // console.log(JSON.stringify(state.BuyProductsData.buyProduct[0]));
+        // console.log(state.BuyProductsData.buyProduct[0]));
     }
 
     const buyProduct = (productId,sellerId) => {

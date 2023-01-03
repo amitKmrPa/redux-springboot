@@ -10,6 +10,8 @@ import UserLogin from './Login/UserLogin';
 import BuyProductsComponent from "./User/BuyProductsComponent";
 import CartComponent from "./User/CartComponent";
 import NavBar from "./NavBar/NavBar";
+import ViewCart from "./User/ViewCart";
+import SignUp from "./User/SignUp";
 function App() {
   const state = useSelector((state) => state);
   const getAllProducts = useDispatch();
@@ -24,6 +26,8 @@ function App() {
       <Route path={'/userLogin'} element={<UserLogin />} />
       <Route path={'/buyproducts'} element={<BuyProductsComponent />} />
       <Route path={'/addToCart'} element={<CartComponent />} />
+      <Route path={'/viewCart'} element={<ViewCart />} />
+      <Route path={'/signUp'} element={<SignUp />} />
       </Routes>
     </Router>
    

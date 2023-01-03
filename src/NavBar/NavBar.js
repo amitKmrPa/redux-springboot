@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import { useNavigate, NavLink } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import GetCart from "../Actions/GetCart";
 export default function NavBar() {
+    const state = useSelector((state)=>state)
     const [userId, setUserId] = useState("");
     const [userName, setUserName] = useState("");
     const navigate = useNavigate();
+    const getCart=useDispatch();
     useEffect(() => {
         const uId = JSON.parse(localStorage.getItem('userId'));
         const uName = JSON.parse(localStorage.getItem('userName'));
         setUserId(uId);
         setUserName(uName);
     }, []);
+
     const Login = () => {
         navigate('/userLogin');
+    }
+    const signUp = () => {
+        navigate('/signUp');
     }
     const logout = () => {
         localStorage.removeItem('userId');
@@ -26,6 +33,7 @@ export default function NavBar() {
         navigate('/');
     }
     const cartNav = (e) => {
+         getCart(GetCart(userId));
         if(userId){
 
         }else{
@@ -60,7 +68,7 @@ export default function NavBar() {
                         textDecoration: 'none'
                     }}
                 >Home</NavLink>
-                <NavLink to="/addToCart"
+                <NavLink to="/viewCart"
                     style={
                         {
                             color: 'white',
@@ -86,7 +94,7 @@ export default function NavBar() {
                         variant="contained"
                         color="warning"
                         className="nav-link"
-                    // onClick={Login}
+                    onClick={signUp}
                     >Signup</Button>
                 }
                 {
